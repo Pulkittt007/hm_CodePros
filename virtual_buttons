@@ -1,0 +1,32 @@
+using UnityEngine;
+using System.Collections;
+using Vuforia;
+
+public class vbScript : Monobehaviour , IVirtualButtonEventHandler 
+{
+
+	private GameObject vbButtonObject;
+	private GameObject redfort;
+	// for intialization
+	
+	void Start()
+	 {
+
+		vbButtonObject = GameObject.Find ("actionButton");
+        redfort = GameObject.Find("redfort");
+        vbButtonObject.GetComponent<VirtualButtonBehaiour> ().RegisterEventHandler (this);
+
+	}
+    public void OnButtonPressed (VirtualButtonAbstractBehaiour vb)
+    {
+
+    	Debug.Log ("button down!");
+    	redfort.GetComponent<Animation> ().Play();
+    }
+    public void OnButtonReleased(VirtualButtonAbstractBehaiour vb) 
+    {
+
+    	redfort.GetComponent<Animation> ().Stop();
+    
+    }
+}
